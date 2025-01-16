@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ImageFromFolder</string>
+    <string name="select_folder">Select Folder</string>
+    <string name="select_folder_location">Select folder location</string>
+    <string name="select_folder_for_images">Select folder for images</string>
+    <string name="select_status_color">Select status bar color</string>
+    <string name="select_color_for_status">Select color for status bar</string>
+    <string name="select_action_color">Select action bar color</string>
+    <string name="select_color_for_action">Select color for action bar</string>
+    <string name="save">Save</string>
+    <string name="storage_permission_denied">Storage permission denied</string>
+    <string name="manage_all_files_permission_required">Permission to manage all files is required</string>
+    <string name="folder_not_exist">Selected folder does not exist</string>
+    <string name="image">Image</string>
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
+</resources>
