@@ -29,27 +29,39 @@ class Settings : AppCompatActivity() {
         val folderAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, folders)
         folderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         selectFolderSpinner.adapter = folderAdapter
+        val storedFolderPath = getStorePrefStringData(this, Constants.SELECTED_FOLDER)
+        val folderIndex = folders.indexOf(storedFolderPath)
+        if (folderIndex != -1) {
+            selectFolderSpinner.setSelection(folderIndex)
+        }
 
         val colorsList = listOf(getString(R.string.red), getString(R.string.blue), getString(R.string.green), getString(R.string.yellow))
         val statusBarColorAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, colorsList)
         statusBarColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         statusBarColorSpinner.adapter = statusBarColorAdapter
+        val storedStatusColor = getStorePrefIntData(this, Constants.STATUS_BAR_COLOR)
+        val statusColorIndex = colorsList.indexOf(getColorNameFromCode(storedStatusColor))
+        if (statusColorIndex != -1) {
+            statusBarColorSpinner.setSelection(statusColorIndex)
+        }
 
         val actionBarColorAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, colorsList)
         actionBarColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         actionBarColorSpinner.adapter = actionBarColorAdapter
+        val storedActionColor = getStorePrefIntData(this, Constants.ACTION_BAR_COLOR)
+        val actionColorIndex = colorsList.indexOf(getColorNameFromCode(storedActionColor))
+        if (actionColorIndex != -1) {
+            actionBarColorSpinner.setSelection(actionColorIndex)
+        }
 
         saveButton.setOnClickListener {
             val selectedFolder = selectFolderSpinner.selectedItem.toString()
             val selectedStatusBarColor = getColorFromString(statusBarColorSpinner.selectedItem.toString())
             val selectedActionBarColor = getColorFromString(actionBarColorSpinner.selectedItem.toString())
 
-            val sharedPreferences = getSharedPreferences(Constants.SETTINGS, MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putString(Constants.SELECTED_FOLDER, selectedFolder)
-            editor.putInt(Constants.STATUS_BAR_COLOR, selectedStatusBarColor)
-            editor.putInt(Constants.ACTION_BAR_COLOR, selectedActionBarColor)
-            editor.apply()
+            storePrefStringData(this, Constants.SELECTED_FOLDER, selectedFolder)
+            storePrefIntData(this, Constants.STATUS_BAR_COLOR, selectedStatusBarColor)
+            storePrefIntData(this, Constants.ACTION_BAR_COLOR, selectedActionBarColor)
 
             val resultIntent = Intent()
             resultIntent.putExtra(Constants.SELECTED_FOLDER, selectedFolder)
@@ -65,6 +77,16 @@ class Settings : AppCompatActivity() {
             getString(R.string.green) -> getColor(R.color.green)
             getString(R.string.yellow) -> getColor(R.color.yellow)
             else -> getColor(R.color.purple_700)
+        }
+    }
+
+    private fun getColorNameFromCode(colorCode: Int): String {
+        return when (colorCode) {
+            getColor(R.color.red) -> getString(R.string.red)
+            getColor(R.color.blue) -> getString(R.string.blue)
+            getColor(R.color.green) -> getString(R.string.green)
+            getColor(R.color.yellow) -> getString(R.string.yellow)
+            else -> getString(R.string.red)
         }
     }
 }

@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/dimen_16"
     tools:context=".Settings">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/selectFolderLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:minHeight="@dimen/dimen_48"
         android:layout_marginTop="@dimen/dimen_6"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/statusBarColorLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:minHeight="@dimen/dimen_48"
         app:layout_constraintTop_toBottomOf="@+id/statusBarColorLabel"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/actionBarColorLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/saveSettings"
-        android:layout_width="@dimen/dimen_320"
+        android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
         android:text="@string/save"
         android:backgroundTint="@color/purple_500"

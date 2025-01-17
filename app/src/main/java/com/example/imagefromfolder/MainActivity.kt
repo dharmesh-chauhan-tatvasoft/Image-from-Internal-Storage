@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var imageRecyclerView: RecyclerView
     private lateinit var selectFolderButton: Button
     private lateinit var imagesAdapter: ImagesAdapter
-    private var selectedFolder: String = Constants.FOLDER_PATH_1
+    private var selectedFolder: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,9 +114,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setColorFromPreference() {
-        val sharedPreferences = getSharedPreferences(Constants.SETTINGS, MODE_PRIVATE)
-        val actionBarColor = sharedPreferences.getInt(Constants.ACTION_BAR_COLOR, getColor(R.color.black))
-        val statusBarColor = sharedPreferences.getInt(Constants.STATUS_BAR_COLOR, getColor(R.color.white))
+        selectedFolder = getStorePrefStringData(this, Constants.SELECTED_FOLDER, Constants.FOLDER_PATH_1) ?: ""
+        val actionBarColor = getStorePrefIntData(this, Constants.ACTION_BAR_COLOR, getColor(R.color.purple_500))
+        val statusBarColor = getStorePrefIntData(this, Constants.STATUS_BAR_COLOR, getColor(R.color.purple_200))
 
         window.statusBarColor = statusBarColor
         supportActionBar?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(actionBarColor))
